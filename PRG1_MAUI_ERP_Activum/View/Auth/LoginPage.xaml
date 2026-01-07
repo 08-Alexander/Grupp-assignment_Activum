@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PRG1_MAUI_ERP_Activum.View.Auth.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:PRG1_MAUI_ERP_Activum.ViewModels"
+    Title="Logga in">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="30" Spacing="16">
+
+        <Entry
+            Placeholder="Användarnamn"
+            Text="{Binding Username}" />
+
+        <Entry
+            Placeholder="Lösenord"
+            IsPassword="True"
+            Text="{Binding Password}" />
+
+        <Button
+            Text="Logga in"
+            Command="{Binding LoginCommand}"
+            BackgroundColor="#134f5c"
+            TextColor="White" />
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PRG1_MAUI_ERP_Activum.View.Shared.StartPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="White">
+
+    <Grid
+        RowDefinitions="Auto,Auto,*,Auto"
+        Padding="0"
+        RowSpacing="0">
+
+        <!-- 🔷 Shared Header -->
+        <shared:SharedHeader Grid.Row="0" />
+
+        <!-- 🔷 Titel + intro -->
+        <VerticalStackLayout
+            Grid.Row="1"
+            Padding="30,20"
+            Spacing="10">
+
+            <Label
+                Text="ACTIVUM"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"
+                TextColor="#134f5c" />
+
+            <Label
+                Text="Trygg försäkring för din vardag."
+                FontSize="16"
+                HorizontalOptions="Center"
+                TextColor="#666666" />
+        </VerticalStackLayout>
+
+        <!-- 🔷 Försäkringslistor (scrollbar) -->
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout
+                Padding="30,0"
+                Spacing="15">
+
+                <Frame
+                    BackgroundColor="#d3dfe3"
+                    CornerRadius="12"
+                    Padding="16">
+                    <Label Text="✔ Personförsäkring" FontSize="16" />
+                </Frame>
+
+                <Frame
+                    BackgroundColor="#d3dfe3"
+                    CornerRadius="12"
+                    Padding="16">
+                    <Label Text="✔ Fordonsförsäkring" FontSize="16" />
+                </Frame>
+
+                <Frame
+                    BackgroundColor="#d3dfe3"
+                    CornerRadius="12"
+                    Padding="16">
+                    <Label Text="✔ Företagsförsäkring" FontSize="16" />
+                </Frame>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- 🔷 Knappar -->
+        <VerticalStackLayout
+            Grid.Row="3"
+            Padding="30,20"
+            Spacing="12">
+
+            <Button
+                Text="Logga in"
+                BackgroundColor="#134f5c"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="48"
+                Clicked="OnLoginClicked" />
+
+            <Button
+                Text="Skapa konto"
+                BackgroundColor="#666666"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="48" />
+
+        </VerticalStackLayout>
+
+    </Grid>
+</ContentPage>

@@ -3,11 +3,22 @@
     x:Class="PRG1_MAUI_ERP_Activum.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:PRG1_MAUI_ERP_Activum.View">
+    xmlns:local="clr-namespace:PRG1_MAUI_ERP_Activum.View"
+    xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
+    xmlns:auth="clr-namespace:PRG1_MAUI_ERP_Activum.View.Auth"
+    xmlns:customer="clr-namespace:PRG1_MAUI_ERP_Activum.View.Customer"
+    xmlns:employee="clr-namespace:PRG1_MAUI_ERP_Activum.View.Employee">
 
     <Shell.FlyoutContent>
         <local:CustomFlyoutView />
     </Shell.FlyoutContent>
+    <ShellContent
+    Route="StartPage"
+    ContentTemplate="{DataTemplate shared:StartPage}" />
+
+    <ShellContent
+    Route="LoginPage"
+    ContentTemplate="{DataTemplate auth:LoginPage}" />
 
     <ShellContent Route="MainPage" ContentTemplate="{DataTemplate local:MainPage}" />
     <ShellContent Route="CustomersPage" ContentTemplate="{DataTemplate local:CustomersPage}" />
@@ -19,5 +30,11 @@
     <ShellContent Route="SalaryPage" ContentTemplate="{DataTemplate local:SalaryPage}" />
     <ShellContent Route="PerDiemPage" ContentTemplate="{DataTemplate local:PerDiemPage}" />
     <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-    
+
+    <ShellContent Route="CustomerHome" ContentTemplate="{DataTemplate customer:CustomerHomePage}" />
+    <ShellContent Route="EmployeeHome" ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
+    <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" />
+
+    <MenuItem Text="Logga ut" Clicked="OnLogoutClicked" IsVisible="False" x:Name="LogoutMenuItem" />
+
 </Shell>

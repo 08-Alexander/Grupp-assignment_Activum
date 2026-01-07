@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.Resources.Styles.ActivumTheme">
+
+    <!-- 🎨 Färger -->
+    <Color x:Key="ActivumBlack">#000000</Color>
+    <Color x:Key="ActivumGray">#666666</Color>
+    <Color x:Key="ActivumBlueGreen">#134f5c</Color>
+    <Color x:Key="ActivumWhite">#FFFFFF</Color>
+    <Color x:Key="ActivumLightGreen">#D3DFE3</Color>
+
+    <!-- 🔤 Typsnitt -->
+    <!-- OBS: Nunito kräver font-fil, tills vidare systemfont -->
+    <Style x:Key="ActivumTitleLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource ActivumBlueGreen}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="ActivumBodyLabel" TargetType="Label">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="TextColor" Value="{StaticResource ActivumBlack}" />
+    </Style>
+
+    <!-- 🔘 Knappar -->
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource ActivumBlueGreen}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Padding" Value="12,8" />
+    </Style>
+
+    <!-- 📝 Inputs -->
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource ActivumBlack}" />
+        <Setter Property="PlaceholderColor" Value="{StaticResource ActivumGray}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource ActivumWhite}" />
+    </Style>
+
+    <!-- 📄 Sidor -->
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource ActivumWhite}" />
+    </Style>
+
+</ResourceDictionary>
