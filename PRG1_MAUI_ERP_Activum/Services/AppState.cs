@@ -1,15 +1,18 @@
+using PRG1_MAUI_ERP_Activum.Services;
+
+
 namespace PRG1_MAUI_ERP_Activum.Services;
 
-public class NewContent1 : ContentView
+public static class AppState
 {
-	public NewContent1()
-	{
-		Content = new VerticalStackLayout
-		{
-			Children = {
-				new Label { HorizontalOptions = LayoutOptions.Center, VerticalOptions = LayoutOptions.Center, Text = "Welcome to .NET MAUI!"
-				}
-			}
-		};
-	}
+    public static string? UserRole { get; set; }   // "Customer" | "Employee"
+    public static string? Username { get; set; }
+
+    public static event Action? StateChanged;
+
+    public static void NotifyStateChanged()
+    {
+        StateChanged?.Invoke();
+    }
 }
+

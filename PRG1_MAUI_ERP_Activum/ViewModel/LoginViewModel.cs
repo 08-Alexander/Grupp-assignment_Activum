@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using PRG1_MAUI_ERP_Activum.Services;
 
 namespace PRG1_MAUI_ERP_Activum.ViewModels;
 
@@ -11,25 +12,44 @@ public class LoginViewModel
 
     public LoginViewModel()
     {
-        LoginCommand = new Command(OnLogin);
+        LoginCommand = new Command(async () => await OnLogin());
     }
 
-    private async void OnLogin()
+    private async Task OnLogin()
     {
-        if (Username == "kund")
+        try
         {
-            await Shell.Current.GoToAsync("//CustomerHome");
+            // ?? Grundläggande validering
+            if (string.IsNullOrWhiteSpace(Username) ||
+                string.IsNullOrWhiteSpace(Password))
+            {
+                await ErrorService.ShowError(
+                    "Användarnamn och lösenord krävs");
+                return;
+            }
+
+            // ?? Försök logga in via AuthService
+            if (!AuthService.TryLogin(Username, Password, out var role))
+            {
+                await ErrorService.ShowError(
+                    "Felaktigt användarnamn eller lösenord");
+                return;
+            }
+
+            // ? Sätt global app-state
+            AppState.Username = Username;
+            AppState.UserRole = role;
+            AppState.NotifyStateChanged();
+
+            // ?? Navigera baserat på roll
+            await Shell.Current.GoToAsync(
+                role == "Customer"
+                    ? "//CustomerHome"
+                    : "//EmployeeHome");
         }
-        else if (Username == "admin")
+        catch (Exception ex)
         {
-            await Shell.Current.GoToAsync("//EmployeeHome");
-        }
-        else
-        {
-            await Application.Current.MainPage.DisplayAlert(
-                "Fel",
-                "Felaktigt användarnamn eller lösenord",
-                "OK");
+            await ErrorService.ShowUnexpected(ex);
         }
     }
 }

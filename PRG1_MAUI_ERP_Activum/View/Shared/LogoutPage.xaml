@@ -1,0 +1,16 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Shared.LogoutPage">
+
+    <VerticalStackLayout Padding="40" Spacing="20">
+        <Label
+            Text="Vill du logga ut?"
+            FontSize="18"
+            HorizontalOptions="Center" />
+
+        <Button
+            Text="Logga ut"
+            Clicked="OnLogoutClicked" />
+    </VerticalStackLayout>
+</ContentPage>

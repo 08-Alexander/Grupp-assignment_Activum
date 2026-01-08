@@ -5,27 +5,51 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <Grid
-        HeightRequest="80"
+        x:Name="HeaderRoot"
         BackgroundColor="#134f5c"
-        Padding="20,0"
-        ColumnDefinitions="*,Auto"
-        VerticalOptions="Start">
+        Padding="16"
+        ColumnDefinitions="*,Auto">
 
-        <!-- App name -->
-        <Label
-            Text="ACTIVUM"
-            TextColor="White"
-            FontSize="24"
-            FontAttributes="Bold"
-            VerticalOptions="Center" />
+        <!-- 🔷 App title -->
+        <VerticalStackLayout>
+            <Label
+                x:Name="TitleLabel"
+                Text="ACTIVUM"
+                FontSize="22"
+                FontAttributes="Bold"
+                TextColor="White" />
 
-        <!-- Profile / menu icon -->
-        <Image
+            <Label
+                x:Name="SubtitleLabel"
+                FontSize="12"
+                TextColor="#d3dfe3"
+                IsVisible="False" />
+        </VerticalStackLayout>
+
+        <!-- 👤 User info -->
+        <VerticalStackLayout
             Grid.Column="1"
-            Source="dotnet_bot.png"
-            HeightRequest="28"
-            WidthRequest="28"
-            VerticalOptions="Center" />
+            Spacing="4"
+            HorizontalOptions="End"
+            IsVisible="{Binding IsLoggedIn}">
+
+            <Label
+                Text="{Binding UsernameText}"
+                FontSize="12"
+                TextColor="White" />
+
+            <Label
+                Text="{Binding RoleText}"
+                FontSize="11"
+                TextColor="#d3dfe3" />
+
+            <Button
+                Text="Logga ut"
+                FontSize="11"
+                BackgroundColor="Transparent"
+                TextColor="White"
+                Clicked="OnLogoutClicked" />
+        </VerticalStackLayout>
 
     </Grid>
 </ContentView>

@@ -4,28 +4,40 @@ namespace PRG1_MAUI_ERP_Activum.View.Shared;
 
 public partial class SharedHeader : ContentView
 {
+    public bool IsLoggedIn => !string.IsNullOrEmpty(AppState.UserRole);
+
+    public string UsernameText =>
+        IsLoggedIn ? $"Inloggad som: {AppState.Username}" : "";
+
+    public string RoleText =>
+        AppState.UserRole switch
+        {
+            "Customer" => "Roll: Kund",
+            "Employee" => "Roll: Anställd",
+            _ => ""
+        };
+
     public SharedHeader()
     {
         InitializeComponent();
-        UpdateUserInfo();
+        BindingContext = this;
 
-        AppState.StateChanged += UpdateUserInfo;
+        AppState.StateChanged += OnStateChanged;
+        UpdateHeader();
     }
 
-    private void UpdateUserInfo()
+    private void OnStateChanged()
     {
-        if (AppState.UserRole == null)
+        MainThread.BeginInvokeOnMainThread(() =>
         {
-            UserInfoLabel.IsVisible = false;
-        }
-        else
-        {
-            UserInfoLabel.Text =
-                $"Inloggad som: {AppState.Username} ({AppState.UserRole})";
+            OnPropertyChanged(nameof(IsLoggedIn));
+            OnPropertyChanged(nameof(UsernameText));
+            OnPropertyChanged(nameof(RoleText));
 
-            UserInfoLabel.IsVisible = true;
-        }
+            UpdateHeader();
+        });
     }
+
     private void UpdateHeader()
     {
         switch (AppState.UserRole)
@@ -40,7 +52,7 @@ public partial class SharedHeader : ContentView
             case "Employee":
                 HeaderRoot.BackgroundColor = Color.FromArgb("#666666");
                 TitleLabel.Text = "ACTIVUM – ADMIN";
-                SubtitleLabel.Text = "Adminpanel";
+                SubtitleLabel.Text = "Administrationspanel";
                 SubtitleLabel.IsVisible = true;
                 break;
 
@@ -50,5 +62,14 @@ public partial class SharedHeader : ContentView
                 SubtitleLabel.IsVisible = false;
                 break;
         }
+    }
+
+    private async void OnLogoutClicked(object sender, EventArgs e)
+    {
+        AppState.Username = null;
+        AppState.UserRole = null;
+        AppState.NotifyStateChanged();
+
+        await Shell.Current.GoToAsync("//StartPage");
     }
 }

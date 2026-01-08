@@ -8,28 +8,24 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        UpdateMenuVisibility();
         AppState.StateChanged += UpdateFlyout;
+        UpdateFlyout();
     }
 
-    protected override void OnNavigated(ShellNavigatedEventArgs args)
+    private void UpdateFlyout()
     {
-        base.OnNavigated(args);
-        UpdateMenuVisibility();
-    }
-
-    private void UpdateMenuVisibility()
-    {
-        bool isLoggedIn = AppState.UserRole != null;
-
-        CustomerMenu.IsVisible = AppState.UserRole == "Customer";
-        EmployeeMenu.IsVisible = AppState.UserRole == "Employee";
-        LogoutMenuItem.IsVisible = isLoggedIn;
+        var role = AppState.UserRole;
+        bool isLoggedIn = !string.IsNullOrEmpty(role);
 
         FlyoutBehavior = isLoggedIn
             ? FlyoutBehavior.Flyout
             : FlyoutBehavior.Disabled;
+
+        CustomerMenu.IsVisible = role == "Customer";
+        EmployeeMenu.IsVisible = role == "Employee";
+        LogoutFlyout.IsVisible = isLoggedIn;
     }
+
 
     private async void OnLogoutClicked(object sender, EventArgs e)
     {
@@ -39,16 +35,4 @@ public partial class AppShell : Shell
 
         await Shell.Current.GoToAsync("//StartPage");
     }
-    private void UpdateFlyout()
-    {
-        var role = AppState.UserRole;
-
-        FlyoutBehavior = string.IsNullOrEmpty(role)
-            ? FlyoutBehavior.Disabled
-            : FlyoutBehavior.Flyout;
-
-        CustomerMenu.IsVisible = role == "Customer";
-        EmployeeMenu.IsVisible = role == "Employee";
-    }
-
 }
