@@ -3,14 +3,19 @@
     x:Class="PRG1_MAUI_ERP_Activum.View.Customer.CustomerHomePage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
     Title="Min sida">
+    
 
     <VerticalStackLayout Padding="24" Spacing="16">
+        
         <Label
             Text="Välkommen kund 👋"
             FontSize="24"
             FontAttributes="Bold" />
 
         <Label Text="Här ser du dina försäkringar och uppgifter." />
+        <shared:SharedHeader Grid.Row="0" />
+
     </VerticalStackLayout>
 </ContentPage>

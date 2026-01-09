@@ -9,10 +9,7 @@ public static class ErrorService
         if (Application.Current?.MainPage == null)
             return;
 
-        await Application.Current.MainPage.DisplayAlert(
-            title,
-            message,
-            "OK");
+        await Application.Current.MainPage.DisplayAlert(title,message,"OK");
     }
 
     public static async Task ShowUnexpected(Exception ex)

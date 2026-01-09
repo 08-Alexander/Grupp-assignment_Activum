@@ -14,11 +14,19 @@
 
     <!-- 👤 Kundmeny -->
     <FlyoutItem x:Name="CustomerMenu" Title="Min sida" IsVisible="False">
+
         <ShellContent
-            Route="CustomerHome"
-            Title="Översikt"
-            ContentTemplate="{DataTemplate customer:CustomerHomePage}" />
+        Route="CustomerHome"
+        Title="Översikt"
+        ContentTemplate="{DataTemplate customer:CustomerHomePage}" />
+
+        <ShellContent
+        Route="Calculator"
+        Title="Kalkylator"
+        ContentTemplate="{DataTemplate customer:CalculatorPage}" />
+
     </FlyoutItem>
+
 
     <!-- 🧑‍💼 Adminmeny -->
     <FlyoutItem x:Name="EmployeeMenu" Title="Administration" IsVisible="False">
