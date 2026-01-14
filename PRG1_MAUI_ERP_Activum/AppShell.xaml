@@ -6,7 +6,8 @@
     xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
     xmlns:auth="clr-namespace:PRG1_MAUI_ERP_Activum.View.Auth"
     xmlns:customer="clr-namespace:PRG1_MAUI_ERP_Activum.View.Customer"
-    xmlns:employee="clr-namespace:PRG1_MAUI_ERP_Activum.View.Employee">
+    xmlns:employee="clr-namespace:PRG1_MAUI_ERP_Activum.View.Employee"
+    xmlns:tools="clr-namespace:PRG1_MAUI_ERP_Activum.View.Tools">
 
     <!-- Start / Login -->
     <ShellContent Route="StartPage" ContentTemplate="{DataTemplate shared:StartPage}" />
@@ -28,23 +29,29 @@
             ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
     </FlyoutItem>
 
-    <!-- 🧰 VERKTYG -->
-    <FlyoutItem x:Name="ToolsMenu" Title="Verktyg" IsVisible="False">
-        <ShellContent
-            Title="Kalkylator"
-            Route="Calculator"
-            ContentTemplate="{DataTemplate customer:CalculatorPage}" />
+    <!-- 🛠 VERKTYG -->
+    <FlyoutItem
+    x:Name="ToolsMenu"
+    Title="Verktyg"
+    IsVisible="False">
 
         <ShellContent
-            Title="Lön och Bonus"
-            Route="Salary"
-            ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
+        Title="Kalkylator"
+        Route="Calculator"
+        ContentTemplate="{DataTemplate customer:CalculatorPage}" />
 
         <ShellContent
-            Title="Traktamenten"
-            Route="Allowance"
-            ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
+        Title="Lön och Bonus"
+        Route="SalaryBonus"
+        ContentTemplate="{DataTemplate tools:SalaryBonusPage}" />
+
+        <ShellContent
+        Title="Traktamente"
+        Route="PerDiem"
+        ContentTemplate="{DataTemplate tools:PerDiemPage}" />
+
     </FlyoutItem>
+
 
     <!-- ℹ️ OM -->
     <FlyoutItem x:Name="AboutMenu" Title="Om utvecklarna" IsVisible="False">

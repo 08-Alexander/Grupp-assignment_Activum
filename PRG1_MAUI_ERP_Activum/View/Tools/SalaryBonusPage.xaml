@@ -1,0 +1,23 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Tools.SalaryBonusPage"
+    Title="Lön och Bonus">
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+        <Label
+            Text="Lön och Bonus"
+            FontSize="22"
+            FontAttributes="Bold" />
+
+        <Label
+            Text="Här kan admin räkna ut lön, provision och bonus."
+            FontSize="14" />
+
+        <Label
+            Text="(Demo-sida)"
+            FontSize="12"
+            TextColor="Gray" />
+    </VerticalStackLayout>
+
+</ContentPage>

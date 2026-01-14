@@ -101,6 +101,12 @@
 	  <Compile Update="View\Shared\StartPage.xaml.cs">
 	    <DependentUpon>StartPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\Tools\PerDiemPage.xaml.cs">
+	    <DependentUpon>PerDiemPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\Tools\SalaryBonusPage.xaml.cs">
+	    <DependentUpon>SalaryBonusPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -159,6 +165,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Employee\ToolsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Tools\PerDiemPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Tools\SalaryBonusPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
