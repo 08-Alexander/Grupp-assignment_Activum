@@ -8,42 +8,63 @@
     xmlns:customer="clr-namespace:PRG1_MAUI_ERP_Activum.View.Customer"
     xmlns:employee="clr-namespace:PRG1_MAUI_ERP_Activum.View.Employee">
 
-    <!-- 🌍 Start & Login -->
+    <!-- Start / Login -->
     <ShellContent Route="StartPage" ContentTemplate="{DataTemplate shared:StartPage}" />
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" />
 
-    <!-- 👤 Kundmeny -->
-    <FlyoutItem x:Name="CustomerMenu" Title="Min sida" IsVisible="False">
-
+    <!-- 👤 KUNDER -->
+    <FlyoutItem x:Name="CustomerMenu" Title="Kunder" IsVisible="False">
         <ShellContent
-        Route="CustomerHome"
-        Title="Översikt"
-        ContentTemplate="{DataTemplate customer:CustomerHomePage}" />
-
-        <ShellContent
-        Route="Calculator"
-        Title="Kalkylator"
-        ContentTemplate="{DataTemplate customer:CalculatorPage}" />
-
+            Title="Min sida"
+            Route="CustomerHome"
+            ContentTemplate="{DataTemplate customer:CustomerHomePage}" />
     </FlyoutItem>
 
-
-    <!-- 🧑‍💼 Adminmeny -->
-    <FlyoutItem x:Name="EmployeeMenu" Title="Administration" IsVisible="False">
+    <!-- 🛡️ FÖRSÄKRING -->
+    <FlyoutItem x:Name="InsuranceMenu" Title="Försäkring" IsVisible="False">
         <ShellContent
-            Route="EmployeeHome"
-            Title="Kunder"
+            Title="Översikt"
+            Route="InsuranceHome"
             ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
     </FlyoutItem>
 
-    <!-- 🚪 Logga ut -->
-    <FlyoutItem
-    x:Name="LogoutFlyout"
-    Title="Logga ut"
-    IsVisible="False">
+    <!-- 🧰 VERKTYG -->
+    <FlyoutItem x:Name="ToolsMenu" Title="Verktyg" IsVisible="False">
+        <ShellContent
+            Title="Kalkylator"
+            Route="Calculator"
+            ContentTemplate="{DataTemplate customer:CalculatorPage}" />
 
         <ShellContent
-        Title="Logga ut"
-        ContentTemplate="{DataTemplate shared:LogoutPage}" />
+            Title="Lön och Bonus"
+            Route="Salary"
+            ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
+
+        <ShellContent
+            Title="Traktamenten"
+            Route="Allowance"
+            ContentTemplate="{DataTemplate employee:EmployeeHomePage}" />
     </FlyoutItem>
+
+    <!-- ℹ️ OM -->
+    <FlyoutItem x:Name="AboutMenu" Title="Om utvecklarna" IsVisible="False">
+        <ShellContent
+            Title="Om oss"
+            ContentTemplate="{DataTemplate shared:AboutPage}" />
+    </FlyoutItem>
+
+    <!-- ❓ HJÄLP -->
+    <FlyoutItem x:Name="HelpMenu" Title="Hjälp och support" IsVisible="False">
+        <ShellContent
+            Title="Support"
+            ContentTemplate="{DataTemplate shared:HelpPage}" />
+    </FlyoutItem>
+
+    <!-- 🚪 LOGGA UT -->
+    <FlyoutItem x:Name="LogoutFlyout" Title="Logga ut" IsVisible="False">
+        <ShellContent
+            Title="Logga ut"
+            ContentTemplate="{DataTemplate shared:LogoutPage}" />
+    </FlyoutItem>
+
 </Shell>

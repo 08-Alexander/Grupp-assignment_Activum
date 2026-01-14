@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Controls;
+﻿using PRG1_MAUI_ERP_Activum.Services;
 
 namespace PRG1_MAUI_ERP_Activum.View.Customer;
 
@@ -8,17 +8,26 @@ public partial class CalculatorPage : ContentPage
     private string _lastOperator = "";
     private bool _isNewInput = true;
     private double _memoryValue = 0;
-    private string _history = "";
+
+    // För admin-info
+    private double _lastOriginalValue;
+    private double _lastNewValue;
 
     public CalculatorPage()
     {
         InitializeComponent();
         Display.Text = "0";
+        SetupRoleBasedUI();
+    }
+
+    private void SetupRoleBasedUI()
+    {
+        AdminDetailsPanel.IsVisible = AppState.UserRole == "Employee";
     }
 
     private void Number_Click(object sender, EventArgs e)
     {
-        var button = sender as Button;
+        var button = (Button)sender;
 
         if (_isNewInput)
         {
@@ -33,16 +42,11 @@ public partial class CalculatorPage : ContentPage
 
     private void Operation_Click(object sender, EventArgs e)
     {
-        var button = sender as Button;
+        var button = (Button)sender;
 
-        if (double.TryParse(Display.Text, out double result))
+        if (double.TryParse(Display.Text, out double value))
         {
-            if (!string.IsNullOrEmpty(_lastOperator))
-            {
-                Calculate();
-            }
-
-            _currentValue = result;
+            _currentValue = value;
             _lastOperator = button.Text;
             _isNewInput = true;
         }
@@ -53,68 +57,51 @@ public partial class CalculatorPage : ContentPage
         if (!double.TryParse(Display.Text, out double newValue))
             return;
 
-        double originalValue = _currentValue;
+        _lastOriginalValue = _currentValue;
+        _lastNewValue = newValue;
 
         switch (_lastOperator)
         {
-            case "+":
-                _currentValue += newValue;
-                break;
-            case "-":
-                _currentValue -= newValue;
-                break;
-            case "×":
-                _currentValue *= newValue;
-                break;
+            case "+": _currentValue += newValue; break;
+            case "-": _currentValue -= newValue; break;
+            case "×": _currentValue *= newValue; break;
             case "÷":
-                if (newValue == 0)
-                {
-                    ShowError();
-                    return;
-                }
+                if (newValue == 0) { ShowError(); return; }
                 _currentValue /= newValue;
                 break;
-            case "%":
-                _currentValue = (_currentValue * newValue) / 100;
-                break;
+            case "%": _currentValue = (_currentValue * newValue) / 100; break;
             case "√":
-                if (_currentValue < 0)
-                {
-                    ShowError();
-                    return;
-                }
+                if (_currentValue < 0) { ShowError(); return; }
                 _currentValue = Math.Sqrt(_currentValue);
                 break;
-            case "^":
-                _currentValue = Math.Pow(originalValue, newValue);
-                break;
+            case "^": _currentValue = Math.Pow(_currentValue, newValue); break;
             case "1/x":
-                if (newValue == 0)
-                {
-                    ShowError();
-                    return;
-                }
+                if (newValue == 0) { ShowError(); return; }
                 _currentValue = 1 / newValue;
                 break;
         }
 
-        _history = $"{originalValue} {_lastOperator} {newValue} = {_currentValue}\n{_history}";
-        HistoryLabel.Text = _history;
         Display.Text = _currentValue.ToString();
+        HistoryLabel.Text = $"{_lastOriginalValue} {_lastOperator} {_lastNewValue} = {_currentValue}";
+
+        if (AppState.UserRole == "Employee")
+        {
+            CalculationInfoLabel.Text =
+                $"Uttryck: {_lastOriginalValue} {_lastOperator} {_lastNewValue}\nResultat: {_currentValue}";
+        }
     }
 
     private void Equals_Click(object sender, EventArgs e)
     {
         Calculate();
-        _lastOperator = "";
         _isNewInput = true;
+        _lastOperator = "";
     }
 
     private void Clear_Click(object sender, EventArgs e)
     {
         Display.Text = "0";
         _currentValue = 0;
-        _lastOperator = "";
         _isNewInput = true;
     }
 
@@ -134,8 +121,8 @@ public partial class CalculatorPage : ContentPage
 
     private void PlusMinus_Click(object sender, EventArgs e)
     {
-        if (double.TryParse(Display.Text, out double result))
-            Display.Text = (-result).ToString();
+        if (double.TryParse(Display.Text, out double value))
+            Display.Text = (-value).ToString();
     }
 
     private void Decimal_Click(object sender, EventArgs e)
@@ -147,24 +134,20 @@ public partial class CalculatorPage : ContentPage
     private void ShowError()
     {
         Display.Text = "Error";
-        _lastOperator = "";
         _isNewInput = true;
     }
 
     private void MemoryClear_Click(object sender, EventArgs e) => _memoryValue = 0;
-
-    private void MemoryRecall_Click(object sender, EventArgs e) =>
-        Display.Text = _memoryValue.ToString();
-
+    private void MemoryRecall_Click(object sender, EventArgs e) => Display.Text = _memoryValue.ToString();
     private void MemoryAdd_Click(object sender, EventArgs e)
     {
-        if (double.TryParse(Display.Text, out double result))
-            _memoryValue += result;
+        if (double.TryParse(Display.Text, out double value))
+            _memoryValue += value;
     }
 
     private void MemorySubtract_Click(object sender, EventArgs e)
     {
-        if (double.TryParse(Display.Text, out double result))
-            _memoryValue -= result;
+        if (double.TryParse(Display.Text, out double value))
+            _memoryValue -= value;
     }
 }

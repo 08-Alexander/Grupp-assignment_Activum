@@ -1,15 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PRG1_MAUI_ERP_Activum.View.AboutPage"
-             Title="Om Macrosoft">
-    <VerticalStackLayout>
-        <Label
-            Padding="20"
-            Text="Om Macrosoft"
-            Style="{StaticResource Headline}"
-            SemanticProperties.HeadingLevel="Level1"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Shared.AboutPage"
+    Title="Om">
+
+    <VerticalStackLayout Padding="20" Spacing="12">
+        <Label Text="Om Activum" FontSize="22" FontAttributes="Bold"/>
+
+        <Label Text="Detta är ett skolprojekt byggt i .NET MAUI."/>
+        <Label Text="Syfte: Visa försäkringshantering och interna verktyg."/>
+        <Label Text="Version: 1.0 (Demo)"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,8 +1,8 @@
 namespace PRG1_MAUI_ERP_Activum.View.Shared;
 
-public partial class AboutPage : ContentPage
+public partial class HelpPage : ContentPage
 {
-	public AboutPage()
+	public HelpPage()
 	{
 		InitializeComponent();
 	}

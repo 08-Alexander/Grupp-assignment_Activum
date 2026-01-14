@@ -83,11 +83,17 @@
 	  <Compile Update="View\Employee\EmployeeHomePage.xaml.cs">
 	    <DependentUpon>EmployeeHomePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\Employee\RiskSettingsPage.xaml.cs">
+	    <DependentUpon>RiskSettingsPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\Shared\HeaderView.xaml.cs">
 	    <DependentUpon>HeaderView.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\Shared\LogoutPage.xaml.cs">
 	    <DependentUpon>LogoutPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\Shared\HelpPage.xaml.cs">
+	    <DependentUpon>HelpPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\Shared\SharedHeader.xaml.cs">
 	    <DependentUpon>SharedHeader.xaml</DependentUpon>
@@ -113,6 +119,9 @@
 	  <MauiXaml Update="View\Employee\EmployeeHomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\Employee\RiskSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\Shared\AboutPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -129,6 +138,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Shared\LogoutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Shared\HelpPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Shared\SharedHeader.xaml">

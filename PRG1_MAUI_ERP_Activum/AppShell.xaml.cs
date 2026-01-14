@@ -7,7 +7,6 @@ public partial class AppShell : Shell
     public AppShell()
     {
         InitializeComponent();
-
         AppState.StateChanged += UpdateFlyout;
         UpdateFlyout();
     }
@@ -21,18 +20,15 @@ public partial class AppShell : Shell
             ? FlyoutBehavior.Flyout
             : FlyoutBehavior.Disabled;
 
-        CustomerMenu.IsVisible = role == "Customer";
-        EmployeeMenu.IsVisible = role == "Employee";
+        // Kund
+        CustomerMenu.IsVisible = role == "Customer" || role == "Employee";
+
+        // Endast admin
+        InsuranceMenu.IsVisible = role == "Employee";
+        ToolsMenu.IsVisible = role == "Employee";
+        AboutMenu.IsVisible = isLoggedIn;
+        HelpMenu.IsVisible = isLoggedIn;
+
         LogoutFlyout.IsVisible = isLoggedIn;
-    }
-
-
-    private async void OnLogoutClicked(object sender, EventArgs e)
-    {
-        AppState.Username = null;
-        AppState.UserRole = null;
-        AppState.NotifyStateChanged();
-
-        await Shell.Current.GoToAsync("//StartPage");
     }
 }

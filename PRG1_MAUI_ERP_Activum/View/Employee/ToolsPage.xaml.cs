@@ -1,4 +1,4 @@
-namespace PRG1_MAUI_ERP_Activum.View;
+namespace PRG1_MAUI_ERP_Activum.View.Employee;
 
 public partial class ToolsPage : ContentPage
 {
