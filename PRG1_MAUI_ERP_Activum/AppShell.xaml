@@ -8,7 +8,7 @@
     xmlns:customer="clr-namespace:PRG1_MAUI_ERP_Activum.View.Customer"
     xmlns:employee="clr-namespace:PRG1_MAUI_ERP_Activum.View.Employee"
     xmlns:tools="clr-namespace:PRG1_MAUI_ERP_Activum.View.Tools">
-
+    
     <!-- Start / Login -->
     <ShellContent Route="StartPage" ContentTemplate="{DataTemplate shared:StartPage}" />
     <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate auth:LoginPage}" />
@@ -73,5 +73,4 @@
             Title="Logga ut"
             ContentTemplate="{DataTemplate shared:LogoutPage}" />
     </FlyoutItem>
-
 </Shell>

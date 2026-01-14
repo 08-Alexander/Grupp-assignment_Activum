@@ -7,7 +7,10 @@ public static class AuthService
         = new()
         {
             { "kund", ("1234", "Customer") },
-            { "admin", ("9999", "Employee") }
+            { "admin", ("9999", "Employee") },
+            { "alexander", ("alexander", "Employee") },
+            { "Simon", ("simkiv", "Employee") }
+
         };
 
     public static bool TryLogin(
