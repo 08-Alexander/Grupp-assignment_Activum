@@ -5,17 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
     Title="Min sida">
-    
 
-    <VerticalStackLayout Padding="24" Spacing="16">
-        
+
+    <VerticalStackLayout>
         <Label
-            Text="Välkommen kund 👋"
-            FontSize="24"
-            FontAttributes="Bold" />
-
-        <Label Text="Här ser du dina försäkringar och uppgifter." />
-        <shared:SharedHeader Grid.Row="0" />
+        Padding="20"
+        Text="Kunder"
+        Style="{StaticResource Headline}"
+        SemanticProperties.HeadingLevel="Level1"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+        <Label
+        Padding="10"
+        Text=" Hej och välkommen till Kunder sidan. Här kan du få en bra över blick på kunderna."
+        FontSize="15"
+        Style="{StaticResource SubHeadline}"
+        SemanticProperties.HeadingLevel="Level1"/>
+        <Entry
+        Placeholder="Namn"/>
+        <Entry
+        Placeholder="Person nummer"/>
+        <Entry
+        Placeholder="Kund nummer"/>
 
     </VerticalStackLayout>
 </ContentPage>

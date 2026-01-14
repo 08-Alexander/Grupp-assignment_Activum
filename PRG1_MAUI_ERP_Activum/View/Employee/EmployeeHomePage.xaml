@@ -6,13 +6,16 @@
     xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
     Title="Adminpanel">
 
-    <VerticalStackLayout Padding="24" Spacing="16">
+    <VerticalStackLayout>
         <Label
-            Text="Välkommen anställd 👋"
-            FontSize="24"
-            FontAttributes="Bold" />
-
-        <Label Text="Hantera kunder, försäkringar och ärenden." />
-        <shared:SharedHeader Grid.Row="0" />
+        Padding="20"
+        Text="Försäkringar"
+        Style="{StaticResource Headline}"
+        SemanticProperties.HeadingLevel="Level1"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" />
+        <Label
+        Text="Här nere finns det exempel på bra försäkringar för att hålla dig och ditt projekt skyddat. Allt från hem försäkringar till dina egna privata försäkringar, vi har allt du behöver."
+        FontSize="15"/>
     </VerticalStackLayout>
 </ContentPage>

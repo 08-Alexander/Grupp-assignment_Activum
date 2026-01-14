@@ -11,5 +11,8 @@
             SemanticProperties.HeadingLevel="Level1"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Label
+            Text="Här nere finns det exempel på bra försäkringar för att hålla dig och ditt projekt skyddat. Allt från hem försäkringar till dina egna privata försäkringar, vi har allt du behöver."
+            FontSize="15"/>
     </VerticalStackLayout>
 </ContentPage>
