@@ -11,5 +11,6 @@
             SemanticProperties.HeadingLevel="Level1"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+		<Entry ></Entry>
     </VerticalStackLayout>
 </ContentPage>
