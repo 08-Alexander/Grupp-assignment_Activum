@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PRG1_MAUI_ERP_Activum.View.PerDiemPage"
              Title="Traktamenten">
+    <ScrollView>
     <VerticalStackLayout>
         <Label 
             Padding="20"
@@ -11,6 +12,61 @@
             SemanticProperties.HeadingLevel="Level1"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-		<Entry ></Entry>
-    </VerticalStackLayout>
+
+        <Label
+            Text="Orsak till resa"
+            Margin="20, 0, 0, 0"/>
+        <Entry
+            Margin="20, 10, 20, 0"
+            x:Name="ReasonEntry"
+            />
+
+        <Label
+            Text="Antal dagar du var borta"
+            x:Name="DaysLabel"
+            Margin="20, 20, 0, 0"/>
+        <Entry
+            Margin="20, 10, 20, 0"
+            x:Name="DaysEntry"
+            />
+        
+        <Label
+            Text="Ange datum för utresa"
+            Margin="20, 20, 0, 0"/>
+        <Entry
+            Margin="20, 10, 20, 0"
+            x:Name="DateEntry"
+            />
+
+        <Label
+            Text="Ange slutdatum"
+            Margin="20, 20, 0, 0"/>
+        <Entry
+            Margin="20, 10, 20, 0"
+            x:Name="EndDateEntry"
+            />
+
+        <Label
+            Text="Ange resealternativ (tåg/bil/etc)"
+            Margin="20, 20, 0, 0"/>
+        <Entry
+            Margin="20, 10, 20, 0"
+            x:Name="TravelToolEntry"
+            />
+
+        <Label
+            Text="Övriga utgifter"
+            Margin="20, 20, 0, 0"/>
+            <Entry
+            Margin="20, 10, 20, 0"
+            x:Name="OtherExpensesEntry"/>
+
+            <Button Text="Sänd in ansökan"
+             Margin="20, 20, 0, 0"
+             Clicked="PerDiem_Clicked"/>
+            <Label
+                x:Name="MyEditor"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
