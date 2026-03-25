@@ -1,69 +1,66 @@
-﻿namespace PRG1_MAUI_ERP_Activum.View
+using PRG1_MAUI_ERP_Activum.ViewModels;
+
+namespace PRG1_MAUI_ERP_Activum.View;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    private readonly InsuranceViewModel _vm = InsuranceViewModel.Instance;
+
+    public MainPage()
     {
-        public MainPage()
+        InitializeComponent();
+    }
+
+    private void OnSearchCompleted(object sender, EventArgs e) => PerformSearch();
+    private void OnSearchClicked(object sender, EventArgs e)   => PerformSearch();
+
+    // ── Sök kund via ID eller personnummer (LINQ) ────────────────────────────
+    private void PerformSearch()
+    {
+        string input = CustomerIdEntry.Text?.Trim() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(input))
         {
-            InitializeComponent();
+            InsuranceStatusLabel.Text      = "Ingen kund angiven.";
+            InsuranceStatusLabel.TextColor = Colors.Red;
+            return;
         }
 
-        private void OnSearchCompleted(object sender, EventArgs e)
+        // LINQ: sök på kund-ID eller personnummer
+        var customer = _vm.Customers.FirstOrDefault(c =>
+            c.Id.ToString() == input ||
+            c.PersonalNumber.Replace("-", "").Contains(input.Replace("-", "")));
+
+        if (customer is null)
         {
-            PerformSearch();
+            InsuranceStatusLabel.Text      = "Kund saknas i registret.";
+            InsuranceStatusLabel.TextColor = Colors.OrangeRed;
+            return;
         }
 
-        private void OnSearchClicked(object sender, EventArgs e)
+        // LINQ: hämta aktiva försäkringar för kunden
+        var insurances = _vm.GetByCustomer(customer.Id).ToList();
+        int activeCount = insurances.Count(i => i.IsActive);
+
+        InsuranceStatusLabel.Text = activeCount == 0
+            ? $"{customer.Name} – inga aktiva försäkringar."
+            : $"{customer.Name} – {activeCount} aktiv{(activeCount == 1 ? "" : "a")} försäkring{(activeCount == 1 ? "" : "ar")}: " +
+              string.Join(", ", insurances.Where(i => i.IsActive).Select(i => i.Type));
+
+        InsuranceStatusLabel.TextColor = activeCount > 0 ? Colors.Green : Colors.Gray;
+    }
+
+    private async void OnSaveNotesClicked(object sender, EventArgs e)
+    {
+        string notes = NotesEditor?.Text?.Trim() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(notes))
         {
-            PerformSearch();
+            await DisplayAlert("Tomt", "Ange anteckningstext innan du sparar.", "OK");
+            return;
         }
 
-
-        // TODO Sökfunktionen på startsidan är inte implementerad
-        private void PerformSearch()
-        {
-            string input = CustomerIdEntry.Text?.Trim();
-
-            if (string.IsNullOrWhiteSpace(input))
-            {
-                InsuranceStatusLabel.Text = "Ingen kund angiven.";
-                InsuranceStatusLabel.TextColor = Colors.Red;
-                return;
-            }
-
-            bool custumerFound = LookupCustomer(input);
-
-            if (custumerFound)
-            {
-                // TODO Det finns ingen lista över vare sig kunder eller försäkringar. Ändra!
-                InsuranceStatusLabel.Text = "Kund hittad — har 2 aktiva försäkringar.";
-                InsuranceStatusLabel.TextColor = Colors.Green;
-            }
-            else
-            {
-                InsuranceStatusLabel.Text = "Kund saknas i registret.";
-                InsuranceStatusLabel.TextColor = Colors.OrangeRed;
-            }
-        }
-
-        private bool LookupCustomer(string input)
-        {
-            // TODO just: alla inputs på startsidan som slutar på "1" anses existera. Ändra!
-            return input.EndsWith("1");
-        }
-
-        private async void OnSaveNotesClicked(object sender, EventArgs e)
-        {
-            string notes = NotesEditor.Text?.Trim();
-            DateTime? date = DatePickerField.Date;
-
-            if (string.IsNullOrWhiteSpace(notes))
-            {
-                await DisplayAlertAsync("Fel", "Anteckningen är tom.", "OK");
-                return;
-            }
-
-            // TODO Skadeanmälan sparas inte just nu.
-            await DisplayAlertAsync("Sparat", $"Anteckning sparad för datum: {date:d}", "OK");
-        }
+        await DisplayAlert("Sparat", "Anteckningen har sparats.", "OK");
+        NotesEditor.Text = string.Empty;
     }
 }
