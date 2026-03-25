@@ -76,7 +76,7 @@ public partial class InsuranceRegisterPage : ContentPage
             .OrderBy(c => c.Name)
             .ElementAt(PickerCustomer.SelectedIndex);
 
-        var insurance = new Insurance
+        var insurance = new PRG1_MAUI_ERP_Activum.Models.Insurance
         {
             CustomerId  = selectedCustomer.Id,
             Type        = PickerType.SelectedItem!.ToString()!,
@@ -102,7 +102,7 @@ public partial class InsuranceRegisterPage : ContentPage
     // ── Ta bort försäkring ───────────────────────────────────────────────────
     private async void OnRemoveInsuranceClicked(object sender, EventArgs e)
     {
-        if (sender is Button { CommandParameter: Insurance insurance })
+        if (sender is Button { CommandParameter: PRG1_MAUI_ERP_Activum.Models.Insurance insurance })
         {
             bool confirm = await DisplayAlert(
                 "Ta bort försäkring",

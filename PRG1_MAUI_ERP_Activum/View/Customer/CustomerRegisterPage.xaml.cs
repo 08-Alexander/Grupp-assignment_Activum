@@ -1,11 +1,11 @@
 using PRG1_MAUI_ERP_Activum.Models;
 using PRG1_MAUI_ERP_Activum.ViewModels;
+using CustomerModel = PRG1_MAUI_ERP_Activum.Models.Customer;
 
 namespace PRG1_MAUI_ERP_Activum.View.Customers;
 
 public partial class CustomerRegisterPage : ContentPage
 {
-    // Hämtar den delade ViewModeln (singleton)
     private readonly InsuranceViewModel _vm = InsuranceViewModel.Instance;
 
     public CustomerRegisterPage()
@@ -20,7 +20,6 @@ public partial class CustomerRegisterPage : ContentPage
         RefreshList();
     }
 
-    // ── LINQ: sortera kunder efter namn ──────────────────────────────────────
     private void RefreshList()
     {
         CustomerList.ItemsSource = _vm.Customers
@@ -28,7 +27,6 @@ public partial class CustomerRegisterPage : ContentPage
             .ToList();
     }
 
-    // ── Lägg till kund ───────────────────────────────────────────────────────
     private async void OnAddCustomerClicked(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(EntryName.Text))
@@ -37,7 +35,7 @@ public partial class CustomerRegisterPage : ContentPage
             return;
         }
 
-        var customer = new Customer
+        var customer = new CustomerModel
         {
             Name           = EntryName.Text.Trim(),
             Email          = EntryEmail.Text?.Trim()          ?? string.Empty,
@@ -52,10 +50,9 @@ public partial class CustomerRegisterPage : ContentPage
         RefreshList();
     }
 
-    // ── Ta bort kund ─────────────────────────────────────────────────────────
     private async void OnRemoveCustomerClicked(object sender, EventArgs e)
     {
-        if (sender is Button { CommandParameter: Customer customer })
+        if (sender is Button { CommandParameter: CustomerModel customer })
         {
             bool confirm = await DisplayAlert(
                 "Ta bort kund",
@@ -70,13 +67,11 @@ public partial class CustomerRegisterPage : ContentPage
         }
     }
 
-    // ── Visa kundens försäkringar vid klick ──────────────────────────────────
     private async void OnCustomerSelected(object sender, SelectionChangedEventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is not Customer customer)
+        if (e.CurrentSelection.FirstOrDefault() is not CustomerModel customer)
             return;
 
-        // LINQ: hämta försäkringar för vald kund
         var insurances = _vm.GetByCustomer(customer.Id).ToList();
 
         string info = insurances.Count == 0
@@ -86,7 +81,6 @@ public partial class CustomerRegisterPage : ContentPage
 
         await DisplayAlert($"Försäkringar – {customer.Name}", info, "Stäng");
 
-        // Avmarkera raden
         ((CollectionView)sender).SelectedItem = null;
     }
 

@@ -1,0 +1,22 @@
+# Auto-detect text files and normalize line endings
+* text=auto
+
+# C# och XAML – alltid CRLF på Windows
+*.cs    text eol=crlf
+*.xaml  text eol=crlf
+*.csproj text eol=crlf
+*.slnx  text eol=crlf
+*.json  text eol=crlf
+*.md    text eol=crlf
+
+# Binära filer – rör aldrig radslut
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.ttf   binary
+*.otf   binary
+*.svg   binary
+*.pdf   binary
+*.zip   binary
