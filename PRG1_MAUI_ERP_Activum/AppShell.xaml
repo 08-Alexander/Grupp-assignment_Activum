@@ -7,7 +7,9 @@
     xmlns:auth="clr-namespace:PRG1_MAUI_ERP_Activum.View.Auth"
     xmlns:customer="clr-namespace:PRG1_MAUI_ERP_Activum.View.Customer"
     xmlns:employee="clr-namespace:PRG1_MAUI_ERP_Activum.View.Employee"
-    xmlns:tools="clr-namespace:PRG1_MAUI_ERP_Activum.View.Tools">
+    xmlns:tools="clr-namespace:PRG1_MAUI_ERP_Activum.View.Tools"
+    xmlns:customers="clr-namespace:PRG1_MAUI_ERP_Activum.View.Customers"
+    xmlns:insurance="clr-namespace:PRG1_MAUI_ERP_Activum.View.Insurance">
     
     <!-- Start / Login -->
     <ShellContent Route="StartPage" ContentTemplate="{DataTemplate shared:StartPage}" />
@@ -50,6 +52,17 @@
         Route="PerDiem"
         ContentTemplate="{DataTemplate tools:PerDiemPage}" />
 
+    </FlyoutItem>
+    <FlyoutItem Title="Kunder">
+        <ShellContent
+        Title="Kundregister"
+        ContentTemplate="{DataTemplate customers:CustomerRegisterPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Försäkringar">
+        <ShellContent
+        Title="Försäkringsregister"
+        ContentTemplate="{DataTemplate insurance:InsuranceRegisterPage}" />
     </FlyoutItem>
 
 

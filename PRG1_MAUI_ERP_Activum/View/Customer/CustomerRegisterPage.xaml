@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Kundregister"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Customers.CustomerRegisterPage">
+
+    <VerticalStackLayout Padding="20">
+
+        <Button
+            Text="Ny kund"
+            Clicked="OnAddCustomer"/>
+
+        <CollectionView
+            x:Name="CustomerList">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="0,5">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Name}" FontSize="18"/>
+                            <Label Text="{Binding Email}" FontSize="14"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

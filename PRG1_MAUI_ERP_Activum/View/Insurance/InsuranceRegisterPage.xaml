@@ -1,0 +1,51 @@
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Insurance.InsuranceRegisterPage"
+    
+    Title="Försäkringsregister">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+
+        <Label
+            Text="Försäkringsregister"
+            FontSize="22"
+            FontAttributes="Bold"/>
+
+        <Button
+            Text="Ny försäkring"
+            Clicked="OnAddInsurance"/>
+
+        <CollectionView x:Name="InsuranceList">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Frame Padding="10" Margin="0,5">
+
+                        <VerticalStackLayout>
+
+                            <Label
+                                Text="{Binding InsuranceNumber}"
+                                FontAttributes="Bold"/>
+
+                            <Label
+                                Text="{Binding Type}"/>
+
+                            <Label
+                                Text="{Binding RiskLevel}"/>
+
+                            <Label
+                                Text="{Binding MonthlyCost, StringFormat='Månad: {0} kr'}"/>
+
+                        </VerticalStackLayout>
+
+                    </Frame>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

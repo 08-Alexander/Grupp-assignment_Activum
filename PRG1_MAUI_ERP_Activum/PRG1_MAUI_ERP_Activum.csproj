@@ -80,11 +80,20 @@
 	  <Compile Update="View\Customer\CustomerHomePage.xaml.cs">
 	    <DependentUpon>CustomerHomePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\Employee\CustomersPage.xaml.cs">
+	    <DependentUpon>CustomersPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="View\Employee\EmployeeHomePage.xaml.cs">
 	    <DependentUpon>EmployeeHomePage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\Employee\RiskSettingsPage.xaml.cs">
 	    <DependentUpon>RiskSettingsPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\Customer\CustomerRegisterPage.xaml.cs">
+	    <DependentUpon>CustomerRegisterPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="View\Insurance\InsuranceRegisterPage.xaml.cs">
+	    <DependentUpon>InsuranceRegisterPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="View\Shared\HeaderView.xaml.cs">
 	    <DependentUpon>HeaderView.xaml</DependentUpon>
@@ -126,6 +135,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Employee\RiskSettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Customer\CustomerRegisterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Insurance\InsuranceRegisterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Shared\AboutPage.xaml">
