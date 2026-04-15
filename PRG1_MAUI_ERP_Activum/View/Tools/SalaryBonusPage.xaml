@@ -2,22 +2,92 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="PRG1_MAUI_ERP_Activum.View.Tools.SalaryBonusPage"
-    Title="Lön och Bonus">
+    Title="Lön och Bonus"
+    BackgroundColor="#202020">
 
-    <VerticalStackLayout Padding="20" Spacing="12">
-        <Label
-            Text="Lön och Bonus"
-            FontSize="22"
-            FontAttributes="Bold" />
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
 
-        <Label
-            Text="Här kan admin räkna ut lön, provision och bonus."
-            FontSize="14" />
+            <!-- Rubrik -->
+            <Label
+                Text="Löneberäkning (Admin)"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="White" />
 
-        <Label
-            Text="(Demo-sida)"
-            FontSize="12"
-            TextColor="Gray" />
-    </VerticalStackLayout>
+            <Label
+                Text="Beräkna lön, provision och skatt för anställd."
+                FontSize="14"
+                TextColor="#CCCCCC" />
 
+            <!-- Grundinfo -->
+            <Frame BackgroundColor="#2E2E2E" Padding="12">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Grundlön: 26 000 kr" TextColor="White"/>
+                    <Label Text="Provision: 12 %" TextColor="White"/>
+                    <Label Text="Skatt: 32 %" TextColor="White"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Inmatning -->
+            <Label
+                Text="Månadens försäljning (kr)"
+                TextColor="White" />
+
+            <Entry
+                x:Name="SalesEntry"
+                Keyboard="Numeric"
+                Placeholder="Ex: 50000"
+                TextColor="White"
+                BackgroundColor="#121212" />
+
+            <!-- Knapp -->
+            <Button
+                Text="Beräkna lön"
+                BackgroundColor="#4F94D4"
+                TextColor="White"
+                HeightRequest="50"
+                Clicked="OnCalculateClicked"/>
+
+
+            <!-- Resultat -->
+            <Frame BackgroundColor="#1E1E1E" Padding="12">
+                <VerticalStackLayout Spacing="8">
+
+                    <Label
+                        Text="Resultat"
+                        FontAttributes="Bold"
+                        FontSize="16"
+                        TextColor="White" />
+
+                    <Label x:Name="ProvisionLabel" Text="Provision: -" TextColor="White"/>
+                    <Label x:Name="GrossSalaryLabel" Text="Bruttolön: -" TextColor="White"/>
+                    <Label x:Name="TaxLabel" Text="Skatt: -" TextColor="White"/>
+                    <Label x:Name="NetSalaryLabel" Text="Nettolön: -" TextColor="White"/>
+
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Semesterinfo -->
+            <Frame BackgroundColor="#2A2A2A" Padding="12">
+                <VerticalStackLayout Spacing="6">
+                    <Label
+                        Text="Semesterlön"
+                        FontAttributes="Bold"
+                        TextColor="White" />
+
+                    <Label
+                        Text="Beräknas på genomsnitt av upp till 11 månader."
+                        FontSize="12"
+                        TextColor="#BBBBBB" />
+
+                    <Label
+                        x:Name="VacationPayLabel"
+                        Text="Semesterlön: -"
+                        TextColor="White" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

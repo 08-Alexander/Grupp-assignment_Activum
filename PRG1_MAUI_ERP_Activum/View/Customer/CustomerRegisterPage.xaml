@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Customers.CustomerRegisterPage"
+    Title="Kundregister">
+
+    <Grid RowDefinitions="Auto,Auto,*" Padding="20" RowSpacing="16">
+
+        <!-- ── Rubrik ──────────────────────────────────────────────────── -->
+        <Label Grid.Row="0"
+               Text="Kundregister"
+               Style="{StaticResource ActivumTitleLabel}" />
+
+        <!-- ── Formulär: lägg till kund ───────────────────────────────── -->
+        <Frame Grid.Row="1"
+               BackgroundColor="{StaticResource ActivumLightGreen}"
+               CornerRadius="10"
+               Padding="14">
+            <Grid ColumnDefinitions="*,*,*,*"
+                  RowDefinitions="Auto,Auto"
+                  ColumnSpacing="10"
+                  RowSpacing="10">
+
+                <Entry Grid.Row="0" Grid.Column="0"
+                       x:Name="EntryName"
+                       Placeholder="Fullständigt namn" />
+                <Entry Grid.Row="0" Grid.Column="1"
+                       x:Name="EntryEmail"
+                       Placeholder="E-postadress"
+                       Keyboard="Email" />
+                <Entry Grid.Row="0" Grid.Column="2"
+                       x:Name="EntryPhone"
+                       Placeholder="Telefonnummer"
+                       Keyboard="Telephone" />
+                <Entry Grid.Row="0" Grid.Column="3"
+                       x:Name="EntryPersonalNumber"
+                       Placeholder="Personnummer (ÅÅMMDD-XXXX)" />
+
+                <Entry Grid.Row="1" Grid.Column="0"
+                       x:Name="EntryAddress"
+                       Placeholder="Gatuadress" />
+                <Entry Grid.Row="1" Grid.Column="1"
+                       x:Name="EntryCity"
+                       Placeholder="Stad" />
+
+                <Button Grid.Row="1" Grid.Column="3"
+                        Text="➕ Lägg till kund"
+                        Clicked="OnAddCustomerClicked" />
+            </Grid>
+        </Frame>
+
+        <!-- ── Lista med kolumnrubriker ───────────────────────────────── -->
+        <Grid Grid.Row="2" RowDefinitions="Auto,*" RowSpacing="0">
+
+            <!-- Kolumnrubriker -->
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="50,140,160,130,150,100,Auto"
+                  BackgroundColor="{StaticResource ActivumBlueGreen}"
+                  Padding="10,6">
+                <Label Grid.Column="0" Text="ID"          TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="1" Text="Namn"        TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="2" Text="E-post"      TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="3" Text="Telefon"     TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="4" Text="Adress"      TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="5" Text="Personnr"    TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="6" Text=""            TextColor="White" FontAttributes="Bold" FontSize="13" />
+            </Grid>
+
+            <!-- Datarader -->
+            <CollectionView Grid.Row="1"
+                            x:Name="CustomerList"
+                            SelectionMode="Single"
+                            SelectionChanged="OnCustomerSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="50,140,160,130,150,100,Auto"
+                              Padding="10,8"
+                              BackgroundColor="White">
+                            <Grid.Triggers>
+                                <DataTrigger TargetType="Grid" Binding="{Binding Source={RelativeSource Self}, Path=IsSelected}" Value="True">
+                                    <Setter Property="BackgroundColor" Value="{StaticResource ActivumLightGreen}" />
+                                </DataTrigger>
+                            </Grid.Triggers>
+                            <Label Grid.Column="0" Text="{Binding Id}"             VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="1" Text="{Binding Name}"           VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="2" Text="{Binding Email}"          VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="3" Text="{Binding Phone}"          VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="4" Text="{Binding Location}"       VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="5" Text="{Binding PersonalNumber}" VerticalOptions="Center" FontSize="13" />
+                            <Button Grid.Column="6"
+                                    Text="Ta bort"
+                                    BackgroundColor="#c0392b"
+                                    TextColor="White"
+                                    CornerRadius="6"
+                                    Padding="8,4"
+                                    FontSize="12"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnRemoveCustomerClicked" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </Grid>
+</ContentPage>

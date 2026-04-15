@@ -19,7 +19,6 @@ public class LoginViewModel
     {
         try
         {
-            // ?? Grundläggande validering
             if (string.IsNullOrWhiteSpace(Username) ||
                 string.IsNullOrWhiteSpace(Password))
             {
@@ -28,7 +27,6 @@ public class LoginViewModel
                 return;
             }
 
-            // ?? Försök logga in via AuthService
             if (!AuthService.TryLogin(Username, Password, out var role))
             {
                 await ErrorService.ShowError(
@@ -36,12 +34,10 @@ public class LoginViewModel
                 return;
             }
 
-            // ? Sätt global app-state
             AppState.Username = Username;
             AppState.UserRole = role;
             AppState.NotifyStateChanged();
 
-            // ?? Navigera baserat på roll
             await Shell.Current.GoToAsync(
                 role == "Customer"
                     ? "//CustomerHome"

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:sys="clr-namespace:System;assembly=netstandard"
+             xmlns:insurance="clr-namespace:PRG1_MAUI_ERP_Activum.View.Insurance"
              x:Class="PRG1_MAUI_ERP_Activum.View.MainPage"
              Title="Start">
 
@@ -39,6 +40,7 @@
                          Margin="10,0,0,0"
                          Aspect="AspectFill"
                          Clicked="OnSearchClicked" />
+            
 
             <Label Grid.Row="4" Grid.ColumnSpan="2"
                    Text="Försäkringar aktuell kund"
@@ -50,6 +52,7 @@
                    Grid.ColumnSpan="2"
                    Text="Ingen sökning ännu"
                    TextColor="Gray" />
+            
 
             <Label Grid.Row="6" Grid.ColumnSpan="2"
                    Text="Skadeståndsanmälan (anteckningar)"
@@ -76,8 +79,11 @@
                     Text="Spara anteckning"
                     Margin="0,20,0,0"
                     Clicked="OnSaveNotesClicked" />
+            
 
         </Grid>
+        
     </ScrollView>
+    
 
 </ContentPage>

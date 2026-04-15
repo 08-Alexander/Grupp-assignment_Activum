@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="PRG1_MAUI_ERP_Activum.View.Insurance.InsuranceRegisterPage"
+    Title="Försäkringsregister">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" Padding="20" RowSpacing="16">
+
+        <!-- ── Rubrik ──────────────────────────────────────────────────── -->
+        <Label Grid.Row="0"
+               Text="Försäkringsregister"
+               Style="{StaticResource ActivumTitleLabel}" />
+
+        <!-- ── Sök / filtrera ─────────────────────────────────────────── -->
+        <Frame Grid.Row="1"
+               BackgroundColor="{StaticResource ActivumLightGreen}"
+               CornerRadius="10"
+               Padding="12">
+            <Grid ColumnDefinitions="*,160,120" ColumnSpacing="10">
+                <Entry Grid.Column="0"
+                       x:Name="EntrySearch"
+                       Placeholder="Sök på typ, nummer eller kund-ID…"
+                       TextChanged="OnSearchChanged" />
+                <Picker Grid.Column="1"
+                        x:Name="PickerStatusFilter"
+                        Title="Filtrera status"
+                        SelectedIndexChanged="OnFilterChanged">
+                    <Picker.Items>
+                        <x:String>Alla</x:String>
+                        <x:String>Aktiva</x:String>
+                        <x:String>Inaktiva</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Button Grid.Column="2"
+                        Text="Återställ"
+                        Clicked="OnResetClicked" />
+            </Grid>
+        </Frame>
+
+        <!-- ── Formulär: lägg till försäkring ────────────────────────── -->
+        <Frame Grid.Row="2"
+               BackgroundColor="{StaticResource ActivumLightGreen}"
+               CornerRadius="10"
+               Padding="14">
+            <Grid ColumnDefinitions="*,*,*,*,*,Auto"
+                  ColumnSpacing="10">
+
+                <Picker Grid.Column="0"
+                        x:Name="PickerCustomer"
+                        Title="Välj kund" />
+
+                <Picker Grid.Column="1"
+                        x:Name="PickerType"
+                        Title="Försäkringstyp">
+                    <Picker.Items>
+                        <x:String>Bil</x:String>
+                        <x:String>Hem</x:String>
+                        <x:String>Liv</x:String>
+                        <x:String>Olycksfall</x:String>
+                        <x:String>Resa</x:String>
+                        <x:String>Företag</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Picker Grid.Column="2"
+                        x:Name="PickerRisk"
+                        Title="Risknivå">
+                    <Picker.Items>
+                        <x:String>Låg</x:String>
+                        <x:String>Medel</x:String>
+                        <x:String>Hög</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Entry Grid.Column="3"
+                       x:Name="EntryDescription"
+                       Placeholder="Beskrivning" />
+
+                <Entry Grid.Column="4"
+                       x:Name="EntryCost"
+                       Placeholder="Kr/mån"
+                       Keyboard="Numeric" />
+
+                <Button Grid.Column="5"
+                        Text="➕ Lägg till"
+                        Clicked="OnAddInsuranceClicked" />
+            </Grid>
+        </Frame>
+
+        <!-- ── Lista med kolumnrubriker ───────────────────────────────── -->
+        <Grid Grid.Row="3" RowDefinitions="Auto,*" RowSpacing="0">
+
+            <!-- Kolumnrubriker -->
+            <Grid Grid.Row="0"
+                  ColumnDefinitions="80,70,80,80,160,90,70,Auto"
+                  BackgroundColor="{StaticResource ActivumBlueGreen}"
+                  Padding="10,6">
+                <Label Grid.Column="0" Text="Nummer"      TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="1" Text="Typ"         TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="2" Text="Kund-ID"     TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="3" Text="Risknivå"    TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="4" Text="Beskrivning" TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="5" Text="Kr/mån"      TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="6" Text="Status"      TextColor="White" FontAttributes="Bold" FontSize="13" />
+                <Label Grid.Column="7" Text=""            TextColor="White" FontAttributes="Bold" FontSize="13" />
+            </Grid>
+
+            <!-- Datarader -->
+            <CollectionView Grid.Row="1"
+                            x:Name="InsuranceList"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="80,70,80,80,160,90,70,Auto"
+                              Padding="10,8"
+                              BackgroundColor="White">
+                            <Label Grid.Column="0" Text="{Binding InsuranceNumber}" VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="1" Text="{Binding Type}"            VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="2" Text="{Binding CustomerId}"      VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="3" Text="{Binding RiskLevel}"       VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="4" Text="{Binding Description}"     VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="5" Text="{Binding CostDisplay}"     VerticalOptions="Center" FontSize="13" />
+                            <Label Grid.Column="6" Text="{Binding StatusText}"      VerticalOptions="Center" FontSize="13"
+                                   TextColor="{Binding IsActive, Converter={StaticResource BoolToStatusColor}}" />
+                            <Button Grid.Column="7"
+                                    Text="Ta bort"
+                                    BackgroundColor="#c0392b"
+                                    TextColor="White"
+                                    CornerRadius="6"
+                                    Padding="8,4"
+                                    FontSize="12"
+                                    CommandParameter="{Binding .}"
+                                    Clicked="OnRemoveInsuranceClicked" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+
+    </Grid>
+</ContentPage>
