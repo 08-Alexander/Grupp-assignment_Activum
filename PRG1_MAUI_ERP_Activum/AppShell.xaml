@@ -53,13 +53,13 @@
         ContentTemplate="{DataTemplate tools:PerDiemPage}" />
 
     </FlyoutItem>
-    <FlyoutItem Title="Kunder">
+    <FlyoutItem Title="KunderRegister">
         <ShellContent
         Title="Kundregister"
         ContentTemplate="{DataTemplate customers:CustomerRegisterPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Försäkringar">
+    <FlyoutItem Title="Försäkringarregister">
         <ShellContent
         Title="Försäkringsregister"
         ContentTemplate="{DataTemplate insurance:InsuranceRegisterPage}" />

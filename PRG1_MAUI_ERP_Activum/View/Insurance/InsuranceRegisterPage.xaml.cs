@@ -10,7 +10,7 @@ public partial class InsuranceRegisterPage : ContentPage
     public InsuranceRegisterPage()
     {
         InitializeComponent();
-        PickerStatusFilter.SelectedIndex = 0; // "Alla"
+        PickerStatusFilter.SelectedIndex = 0;
     }
 
     protected override void OnAppearing()
