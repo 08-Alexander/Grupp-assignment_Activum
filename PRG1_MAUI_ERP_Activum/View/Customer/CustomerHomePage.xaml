@@ -1,32 +1,61 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
-    x:Class="PRG1_MAUI_ERP_Activum.View.Customer.CustomerHomePage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:shared="clr-namespace:PRG1_MAUI_ERP_Activum.View.Shared"
-    Title="Min sida">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PRG1_MAUI_ERP_Activum.View.CustomersPage"
+             Title="Kunder">
 
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
 
-    <VerticalStackLayout>
-        <Label
-        Padding="20"
-        Text="Kunder"
-        Style="{StaticResource Headline}"
-        SemanticProperties.HeadingLevel="Level1"
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" />
-        <Label
-        Padding="10"
-        Text=" Hej och välkommen till Kunder sidan. Här kan du få en bra över blick på kunderna."
-        FontSize="15"
-        Style="{StaticResource SubHeadline}"
-        SemanticProperties.HeadingLevel="Level1"/>
-        <Entry
-        Placeholder="Namn"/>
-        <Entry
-        Placeholder="Person nummer"/>
-        <Entry
-        Placeholder="Kund nummer"/>
+            <!-- Titel -->
+            <Label
+                Text="Kundhantering"
+                FontSize="28"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"/>
 
-    </VerticalStackLayout>
+            <!-- FORM (kort-känsla) -->
+            <Border>
+                <VerticalStackLayout Spacing="10" Padding="15">
+
+                    <Entry Placeholder="Förnamn" x:Name="EntryCustomerFirstName"/>
+                    <Entry Placeholder="Efternamn" x:Name="EntryCustomerSecondName"/>
+                    <Entry Placeholder="Mail" x:Name="EntryCustomerMail"/>
+                    <Entry Placeholder="Personnummer" x:Name="EntryCustomerPersonalNumber"/>
+                    <Entry Placeholder="Telefonnummer" x:Name="EntryCustomerPhoneNumber"/>
+
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Visa knapp -->
+            <Button
+                Text="Visa kund"
+                Clicked="ShowCustomerButton"
+                CornerRadius="10"
+                HeightRequest="50"/>
+
+            <!-- Knappar -->
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+
+                <Button
+                    Text="Lägg till"
+                    BackgroundColor="Green"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Clicked="ADDCustomerButton"/>
+
+                <Button
+                    Text="Ta bort"
+                    Grid.Column="1"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    CornerRadius="10"
+                    HeightRequest="50"
+                    Clicked="RemoveCustomerButton"/>
+
+            </Grid>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
